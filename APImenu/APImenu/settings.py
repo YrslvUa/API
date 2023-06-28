@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'Menu.Employee'
 
 # Application definition
 
@@ -78,7 +79,7 @@ WSGI_APPLICATION = 'APImenu.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'Menu',
+        'NAME': 'APIMenu',
         'USER': 'postgres',
         'PASSWORD': '1234567890',
         'HOST': 'localhost',

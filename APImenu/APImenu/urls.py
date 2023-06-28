@@ -17,13 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
-from Menu.views import MenuAPIList, MenuAPIUpdate, MenuAPIDestroy, MenuAPICreate
+from Menu.views import MenuAPIList, MenuAPIUpdate, MenuAPIDestroy
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/drf-auth/', include('rest_framework.urls')),
     path('api/v1/menu/', MenuAPIList.as_view()),
-    path('api/v1/create', MenuAPICreate.as_view()),
     path('api/v1/menu/<int:pk>/', MenuAPIUpdate.as_view()),
     path('api/v1/menudelete/<int:pk>/', MenuAPIDestroy.as_view()),
 

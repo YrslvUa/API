@@ -1,9 +1,20 @@
 from rest_framework import generics
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
-from .models import Menu
+from .models import Menu, Restaurant
 from .permissions import IsAdminOrReadOnly
-from .serializers import MenuSerializer
+from .serializers import MenuSerializer, RestaurantSerializer
+
+
+
+class RestaurantListCreateView(generics.ListCreateAPIView):
+    queryset = Restaurant.objects.all()
+    serializer_class = RestaurantSerializer
+
+
+class RestaurantRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Restaurant.objects.all()
+    serializer_class = RestaurantSerializer
 
 
 class MenuAPIListPagination(PageNumberPagination):
@@ -18,10 +29,6 @@ class MenuAPIList(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     pagination_class = MenuAPIListPagination
 
-
-class MenuAPICreate(generics.CreateAPIView):
-    queryset = Menu.objects.all()
-    serializer_class = MenuSerializer
 
 class MenuAPIUpdate(generics.RetrieveUpdateAPIView):
     queryset = Menu.objects.all()
