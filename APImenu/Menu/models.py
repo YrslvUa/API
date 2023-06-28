@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -7,6 +8,7 @@ class Restaurant(models.Model):
     contact_info = models.TextField(max_length=600, blank=False, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, verbose_name='User', on_delete=models.CASCADE)
 
     class Meta:
         ordering = ('-created',)
@@ -39,6 +41,7 @@ class Menu(models.Model):
     def __str__(self):
         return self.name
 
+
 class MenuItem(models.Model):
     name = models.CharField(max_length=200, blank=False, db_index=True)
     description = models.TextField(max_length=1000, blank=False, null=True)
@@ -53,8 +56,12 @@ class MenuItem(models.Model):
 
     def __str__(self):
         return self.name
+
+
 class Employee(models.Model):
     pass
+
+
 # user: OneToOneField (User, if you're using Django's built-in User model)
 # restaurant: ForeignKey (Restaurant)
 
