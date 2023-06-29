@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 
@@ -31,6 +33,7 @@ class Employee(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
     objects = EmployeeManager()
 
     USERNAME_FIELD = 'email'
@@ -65,11 +68,13 @@ class Restaurant(models.Model):
 
 class Menu(models.Model):
     name = models.CharField(max_length=200, blank=False, null=True, db_index=True)
-    restaurant = models.OneToOneField(Restaurant, on_delete=models.CASCADE, primary_key=True,)
-    items = models.ManyToManyField('MenuItem', blank=True, related_name='menus')
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    items = models.ManyToManyField('MenuItem', blank=True, related_name='menu_items')
     is_published = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True)
+    date = models.DateField(auto_now_add=True)
+
 
     class Meta:
         ordering = ('-created',)
