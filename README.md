@@ -2,12 +2,22 @@
 This is a Django-based restaurant management system that allows you to manage employees, restaurants, menus, menu items, and votes.
 
 ##Installation:
-1 Clone the repository: git clone <repository_url>
+1 Clone the repository:
+```
+git clone <repository_url>
+```
 2 Install the required dependencies using pip: 
-```bash
+```
 pip install -r requirements.txt
-3 Apply the database migrations: python manage.py migrate
-4 Start the development server: python manage.py runserver
+```
+3 Apply the database migrations:
+```
+python manage.py migrate
+```
+4 Start the development server: 
+```
+python manage.py runserver
+```
 5 Access the application at http://localhost:8000 in your web browser.
 
 ##Features
