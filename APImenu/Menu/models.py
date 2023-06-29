@@ -1,8 +1,5 @@
-from datetime import datetime
-
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
-
 from django.contrib.auth.models import BaseUserManager
 
 class EmployeeManager(BaseUserManager):
@@ -42,7 +39,7 @@ class Employee(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
-    def get_full_name(self):
+    def full_name(self):
         return f"{self.first_name} {self.last_name}"
 
     def get_short_name(self):
@@ -55,7 +52,7 @@ class Restaurant(models.Model):
     contact_info = models.TextField(max_length=600, blank=False, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    user = models.OneToOneField(Employee, on_delete=models.CASCADE, primary_key=True)
+    owner = models.OneToOneField(Employee, on_delete=models.CASCADE, primary_key=True)
 
     class Meta:
         ordering = ('-created',)

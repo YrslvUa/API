@@ -11,8 +11,7 @@ services:
       - db
     volumes:
       - .:/code
-    env_file:
-      - .env
+
 
   db:
     image: postgres:latest
